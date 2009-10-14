@@ -6,6 +6,6 @@
   {registered, [collectd_sup]},
   {mod, {collectd, []}},
   {applications, [kernel, stdlib]},
-  {env, [{servers, [{1, "localhost", 25826}]}]}
+  {env, [{servers, [{10, "localhost", 25826}]}]}
  ]
-}
+}.
