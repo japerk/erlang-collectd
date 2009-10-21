@@ -30,6 +30,18 @@ send_mnesia_system_stats() ->
 %% @doc Requires custom mnesia_types.db
 send_mnesia_table_stats(Tab) ->
 	Wordsize = erlang:system_info(wordsize),
-	Mem = mnesia:table_info(Tab, memory) / Wordsize,
-	collectd:set_gauge(memory, Tab, [Mem]),
-	collectd:set_gauge(size, Tab, [mnesia:table_info(Tab, size)]).
+	% NOTE: when mnesia tables aren't loaded, table_info doesn't return numbers
+	% in that case, ignore
+	case mnesia:table_info(Tab, memory) of
+		Mem when is_integer(Mem) ->
+			collectd:set_gauge(memory, Tab, [Mem / Wordsize]);
+		_ ->
+			ok
+	end,
+	
+	case mnesia:table_info(Tab, size) of
+		Size when is_integer(Size) ->
+			collectd:set_gauge(size, Tab, [Size]);
+		_ ->
+			ok
+	end.
