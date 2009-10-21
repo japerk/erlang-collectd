@@ -1,0 +1,5 @@
+{"0.0.3", [
+	{"0.0.2", [{add_module, collectd_util}]}
+], [
+	{"0.0.2", [{delete_module, collectd_util}]}
+]}.
