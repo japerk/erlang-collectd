@@ -2,7 +2,7 @@
              [{description,"collectd client"},
               {vsn,"0.0.3"},
               {modules,[collectd,collectd_pkt,collectd_server,collectd_sup,
-                        collectd_values,mod_collectd]},
+                        collectd_values,mod_collectd,collectd_util]},
               {registered,[collectd_sup]},
               {mod,{collectd,[collectd,collectd_pkt,collectd_server, collectd_util,
                               collectd_sup,collectd_values]}},
