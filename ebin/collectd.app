@@ -1,1 +1,10 @@
-../src/collectd.app
+{application,collectd,
+             [{description,"collectd client"},
+              {vsn,"0.0.1"},
+              {modules,[collectd,collectd_pkt,collectd_server,collectd_sup,
+                        collectd_values,mod_collectd]},
+              {registered,[collectd_sup]},
+              {mod,{collectd,[collectd,collectd_pkt,collectd_server,
+                              collectd_sup,collectd_values]}},
+              {env,[]},
+              {applications,[kernel,stdlib]}]}.
