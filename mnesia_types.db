@@ -1,0 +1,5 @@
+write			count:COUNTER:0:U
+delete			count:COUNTER:0:U
+locks			lock_queue:GAUGE:0:U, held_locks:GAUGE:0:U, transactions:GAUGE:0:U
+transactions	failures:COUNTER:0:U, restarts:COUNTER:0:U, commits:COUNTER:0:U
+size			value:GAUGE:0:U

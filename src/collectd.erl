@@ -31,12 +31,17 @@ set_counter(Type, TypeInstance, Values) ->
 %% Application callbacks
 %%====================================================================
 start(_Type, _StartArgs) ->
-    case collectd_sup:start_link() of
-	{ok, Pid} -> 
-	    {ok, Pid};
-	Error ->
-	    Error
-    end.
+	% modified by japerk to use app config servers
+	F = fun({Interval, Host, Port}) -> add_server(Interval, Host, Port) end,
+	
+	case collectd_sup:start_link() of
+		{ok, Pid} ->
+			{ok, Servers} = application:get_env(collectd, servers),
+			lists:foreach(F, Servers),
+			{ok, Pid};
+		Error ->
+			Error
+	end.
 
 %%--------------------------------------------------------------------
 %% Function: stop(State) -> void()
