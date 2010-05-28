@@ -1,5 +1,7 @@
-{"0.0.3", [
+{"0.0.4", [
+	{"0.0.3", [{add_module, mod_collectd}]},
 	{"0.0.2", [{add_module, collectd_util}]}
 ], [
+	{"0.0.3", [{delete_module, mod_collectd}]},
 	{"0.0.2", [{delete_module, collectd_util}]}
 ]}.
